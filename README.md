@@ -4,13 +4,6 @@ Projeto de Chatbot sobre educação fiscal. A ideia do projeto é ensinar às pe
 
 ## Tecnologias e Ferramentas
 
-Componente	Tecnologias
-Lógica de agentes	Python + LangGraph
-Modelo LLM	Ollama (Llama 3.1 8B)
-Banco de Dados	PostgreSQL
-API	FastAPI
-Containerização	Docker + Docker Compose
-
 - **LangGraph** - Lógica dos agentes
 - **FastAPI** - Backend
 - **Docker** - Conteinarização
