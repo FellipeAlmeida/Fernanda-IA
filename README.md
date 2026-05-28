@@ -47,12 +47,29 @@ Certifique-se de ter o docker e o git instalado.
 git clone <url do repositorio>
 ```
 
-**Passo 2** - Criar .env na **raiz do projeto**
+**Passo 2** - Entrar no projeto
 ```
-...
+cd Fernanda-IA
 ```
 
-**Passo 3** - Comando docker para buildar
+**Passo 3** - Criar ambiente virtual
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+**Passo 4** - Criar .env na **raiz do projeto**
+```
+MODEL_NAME=tinyllama
+OLLAMA_BASE_URL=http://host.docker.internal:11434
+```
+
+**Passo 4** - Rodar LLM **local** (por enquanto)
+```
+ollama run tinyllama
+```
+
+**Passo 5** - Comando docker para buildar
 ```
 docker compose up -d --build
 ```
