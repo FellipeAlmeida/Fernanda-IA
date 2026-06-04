@@ -54,7 +54,7 @@ cd Fernanda-IA
 
 Instale o modelo:
 ```bash
-ollama pull tinyllama
+ollama pull llama3.1:8b
 ```
 
 Configure o Ollama para aceitar conexões dos containers Docker
@@ -80,7 +80,7 @@ docker network create fernanda-network
 ### Passo 4 - Criar o arquivo `.env` na raiz do projeto
 
 ```env
-MODEL_NAME=tinyllama
+MODEL_NAME=llama3.1:8b
 OLLAMA_BASE_URL=http://172.17.0.1:11434
 ```
 
