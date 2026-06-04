@@ -15,6 +15,7 @@ REGRAS:
 - sem explicações extras
 - sem inglês
 - seja objetiva
+- faça perguntas apenas sobre as informações fornecidas pelo especialista
 
 Explicação:
 {response}

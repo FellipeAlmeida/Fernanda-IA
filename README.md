@@ -25,12 +25,14 @@ Fernanda-IA/
 │   │   ├── specialist_agent.py
 │   │   ├── evaluator_agent.py
 │   │   └── integrator_agent.py
+│   ├── graph/
+│   │   ├── _init_.py
+│   │   ├── education_graph.py
 │   ├── services/
 │   │   ├── _init_.py
 │   │   ├── llm_service.py
-│   │   └── memory_service.py
 │   ├── utils/
-│   │   └── config.py
+│   │   └── state.py
 │   └── main.py
 ├── tests/
 └── docs/
@@ -113,6 +115,7 @@ Em desenvolvimento...
 ### IA
 - agents -> Agentes de IA
 - services -> Lógica da LLM e memória
+- graph -> define ordem dos agentes
 - utils -> helpers
 
 ## Diagramas
