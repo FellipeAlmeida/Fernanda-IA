@@ -40,40 +40,71 @@ Fernanda-IA/
 
 ### Pré-requisitos
 
-Certifique-se de ter o docker e o git instalado.
+- Docker instalado
+- Git instalado
+- Ollama instalado ([ollama.com](https://ollama.com))
 
 **Passo 1** - Clonar repo
 ```
 git clone <url do repositorio>
-```
-
-**Passo 2** - Entrar no projeto
-```
 cd Fernanda-IA
 ```
 
-**Passo 3** - Criar ambiente virtual
-```
-python3 -m venv venv
-source venv/bin/activate
+### Passo 2 - Instalar e configurar o Ollama
+
+Instale o modelo:
+```bash
+ollama pull tinyllama
 ```
 
-**Passo 4** - Criar .env na **raiz do projeto**
+Configure o Ollama para aceitar conexões dos containers Docker
+(necessário apenas uma vez na máquina):
+
+```bash
+sudo mkdir -p /etc/systemd/system/ollama.service.d
+echo -e "[Service]\nEnvironment=\"OLLAMA_HOST=0.0.0.0\"" | sudo tee /etc/systemd/system/ollama.service.d/override.conf
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
 ```
+
+> **Windows/Mac:** Este passo não é necessário. O Ollama já aceita conexões externas por padrão.
+
+### Passo 3 - Criar rede Docker compartilhada
+
+> Só é necessário fazer isso **uma vez** na máquina. Se a rede já existir, pule este passo.
+
+```bash
+docker network create fernanda-network
+```
+
+### Passo 4 - Criar o arquivo `.env` na raiz do projeto
+
+```env
 MODEL_NAME=tinyllama
-OLLAMA_BASE_URL=http://host.docker.internal:11434
+OLLAMA_BASE_URL=http://172.17.0.1:11434
 ```
 
-**Passo 4** - Rodar LLM **local** (por enquanto)
-```
-ollama run tinyllama
-```
+> **Atenção:** O IP `172.17.0.1` é o gateway padrão do Docker no Linux.
+> Se mudar de máquina, confirme o IP correto com:
+> ```bash
+> ip route | grep docker0 | awk '{print $9}'
+> ```
 
-**Passo 5** - Comando docker para buildar
-```
+### Passo 5 - Subir o container
+
+```bash
 docker compose up -d --build
 ```
 
+### Passo 6 - Verificar se está rodando
+
+```bash
+docker ps
+# O container fernanda-ai deve estar com status Up
+
+docker logs fernanda-ai
+# Deve aparecer: Application startup complete
+```
 ## Arquitetura
 
 ### Alto Nível
