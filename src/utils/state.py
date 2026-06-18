@@ -6,6 +6,8 @@ class AgentState(TypedDict):
 
     topic: str
 
+    rag_context: str
+
     specialist_response: str
 
     evaluation: str

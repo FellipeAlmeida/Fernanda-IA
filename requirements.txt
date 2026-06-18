@@ -5,3 +5,6 @@ langgraph
 langchain-ollama
 python-dotenv
 pydantic
+chromadb
+langchain-chroma
+langchain-ollama
