@@ -1,7 +1,0 @@
-ICMS é um imposto estadual incidente sobre circulação de mercadorias e serviços.
-
-IPTU é um imposto municipal cobrado sobre propriedades urbanas.
-
-IPVA é um imposto estadual cobrado sobre veículos automotores.
-
-Imposto de Renda é um imposto federal incidente sobre renda.

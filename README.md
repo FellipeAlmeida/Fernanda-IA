@@ -84,6 +84,7 @@ docker network create fernanda-network
 ```env
 MODEL_NAME=llama3.1:8b
 OLLAMA_BASE_URL=http://172.17.0.1:11434
+EMBEDDING_MODEL=nomic-embed-text
 ```
 
 > **Atenção:** O IP `172.17.0.1` é o gateway padrão do Docker no Linux.
