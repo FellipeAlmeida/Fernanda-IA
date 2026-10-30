@@ -12,7 +12,7 @@ llm = ChatOllama(
     model=MODEL_NAME,
     base_url=OLLAMA_BASE_URL,
     temperature=0.1,
-    num_predict=120
+    num_predict=512
 )
 
 def invoke_llm(prompt: str):
