@@ -1,0 +1,48 @@
+name: Build and Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy IA EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH na AWS
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            cd ~/Fernanda-IA
+
+            git pull origin main
+
+            echo "📦 Gerando arquivo .env..."
+
+            cat <<EOF > .env
+              MODEL_NAME=llama3.1:8b
+              OLLAMA_BASE_URL=http://172.17.0.1:11434
+              EMBEDDING_MODEL=nomic-embed-text
+            EOF
+
+            echo "🧹 Parando containers antigos..."
+            docker compose down
+
+            echo "🔨 Buildando e subindo containers..."
+            docker compose up -d --build
+
+            echo "🧽 Limpando imagens antigas..."
+            docker image prune -f
+
+            echo "✅ Deploy finalizado com sucesso!"
